@@ -38,6 +38,16 @@ const config: Config = {
       fontFamily: {
         nunito: ['var(--font-nunito)', 'sans-serif'],
       },
+      keyframes: {
+        wave: {
+          '0%': { transform: 'translate(-50%, var(--custom-translate)) rotate(0deg)' },
+          '100%': { transform: 'translate(-50%, var(--custom-translate)) rotate(360deg)' },
+        },
+      },
+      animation: {
+        wave: 'wave 5s linear infinite',
+        waveSlow: 'wave 10s linear infinite',
+      },
     },
   },
   plugins: [],

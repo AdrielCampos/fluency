@@ -1,4 +1,5 @@
 'use client';
+import { useRef, useState } from 'react';
 import { Form } from '@/common/components/form/form-provider';
 import { Input } from '@/common/components/form/input';
 import { MessageType } from '@/common/types/chat';
@@ -6,11 +7,13 @@ import { sendMessage } from '@/server/gemini/chat';
 import { Content } from '@google/generative-ai';
 import { ChevronLeft, Send } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
+import Link from 'next/link';
+import { ProfilePicture } from '@/common/components/profile-picture';
 
 export default function Chat() {
   const [message, setMessage] = useState('');
   const [history, setHistory] = useState<Content[]>([]);
+  const targetRef = useRef<HTMLSpanElement>(null);
 
   const sendClientMessage = async (values: Record<string, unknown>) => {
     try {
@@ -23,28 +26,26 @@ export default function Chat() {
       }
       setMessage('');
       setHistory(JSON.parse(res.data));
+
+      if (targetRef.current) {
+        targetRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div className="h-screen flex items-center flex-col px-4">
-      <div className="flex flex-start w-full py-6 gap-4 items-center">
-        <ChevronLeft size={24} className="text-primary-dark" />
-        <div>
-          <Image
-            src="/pfp.jpeg"
-            className="rounded-full outline outline-primary-dark outline-2 outline-offset-4"
-            width={40}
-            height={40}
-            alt="Profile Picture"
-          />
-        </div>
-        <div>
-          <h1 className="text-primary-dark text-xl font-bold">Lira</h1>
-          <div className="text-primary-dark text-sm flex gap-1 items-center">
-            <div className="bg-success w-2 h-2 rounded-full -translate-y-[1px]" />
+    <div className="h-screen flex items-center flex-col p-4">
+      <div className="flex flex-start w-full mb-6 mt-2 gap-4 items-center">
+        <Link className="h-full flex items-center justify-center" href="/dashboard">
+          <ChevronLeft size={24} className="text-primary-dark" />
+        </Link>
+        <ProfilePicture src="/pfp.jpg" size={40} alt="Lira Profile Picture" />
+        <div className="flex flex-col">
+          <h1 className="text-primary-dark text-xl font-bold -mb-[3px]">Lira</h1>
+          <div className="text-success text-sm font-medium flex gap-1 items-center">
+            <div className="bg-success-light border-2 border-success w-[10px] h-[10px] rounded-full -translate-y-[0.5px]" />
             Online
           </div>
         </div>
@@ -70,8 +71,9 @@ export default function Chat() {
             }
           });
         })}
+        <span ref={targetRef} />
       </div>
-      <Form onSubmit={sendClientMessage} className="w-full flex gap-3 py-4">
+      <Form onSubmit={sendClientMessage} className="w-full flex gap-3 mt-4">
         <Input
           name="message"
           type="text"

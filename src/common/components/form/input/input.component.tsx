@@ -107,7 +107,7 @@ export const Input = memo(function Input({
         </label>
       )}
       <div className="flex flex-col gap-1 relative">
-        <div className="flex border border-primary-light rounded-xl">
+        <div className="flex border-2 border-primary rounded-xl">
           {prefix && (
             <span className="flex items-center justify-center px-4 border-r bg-background-light rounded-l-lg border-background-lighter">
               {prefix}
