@@ -9,13 +9,10 @@ export default function Dashboard() {
   return (
     <div className="flex items-center flex-col p-4 gap-6">
       <section className="flex justify-between w-full p-6">
-        <h1 className="text-2xl">
-          Hello, <br /> <strong>Adriel!</strong>
-        </h1>
         <UserProfilePicture />
       </section>
       <section className="flex flex-col w-full items-center gap-4">
-        <WaveCircle percentage={60} />
+        <WaveCircle percentage={80} />
         <div>
           <h3 className="text-center text-xl font-bold">Iniciante</h3>
           <p className="text-center text-base">A1</p>
