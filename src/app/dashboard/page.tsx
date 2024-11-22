@@ -1,7 +1,9 @@
 import { ProfilePicture } from '@/common/components/profile-picture';
 import { WaveCircle } from './components/wave-circle';
-import { ChevronRight, Plus } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import { NewChat } from './components/new-chat';
+import { UserProfilePicture } from './components/user-profile-picture';
 
 export default function Dashboard() {
   return (
@@ -10,7 +12,7 @@ export default function Dashboard() {
         <h1 className="text-2xl">
           Hello, <br /> <strong>Adriel!</strong>
         </h1>
-        <ProfilePicture src="/pfp.jpg" alt="Adriel" size={55} />
+        <UserProfilePicture />
       </section>
       <section className="flex flex-col w-full items-center gap-4">
         <WaveCircle percentage={60} />
@@ -41,10 +43,7 @@ export default function Dashboard() {
             <ChevronRight size={22} className="text-primary-dark" />
           </div>
         </Link>
-        <button className="flex gap-2 w-full bg-primary-dark text-secondary-light items-center justify-center p-3 rounded-lg border-none">
-          <Plus size={22} />
-          <p>Nova conversa</p>
-        </button>
+        <NewChat />
       </section>
     </div>
   );

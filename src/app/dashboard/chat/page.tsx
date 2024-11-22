@@ -6,7 +6,6 @@ import { MessageType } from '@/common/types/chat';
 import { sendMessage } from '@/server/gemini/chat';
 import { Content } from '@google/generative-ai';
 import { ChevronLeft, Send } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ProfilePicture } from '@/common/components/profile-picture';
 

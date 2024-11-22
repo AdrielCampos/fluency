@@ -14,7 +14,7 @@ export const sendMessage = async ({
   fluencyLevel: FluencyLevelType;
   history?: Content[];
   message: { text: string; type: 'user' };
-}): Promise<{ data: string; res: 200 } | { data: undefined; res: 400 }> => {
+}): Promise<{ data: string; res: 200 } | { data: string; res: 400 }> => {
   try {
     const chatModel = model.startChat({
       history:
@@ -32,14 +32,6 @@ export const sendMessage = async ({
                   },
                 ],
               },
-              // {
-              //   role: 'model',
-              //   parts: [
-              //     {
-              //       text: `{"text":"Great to meet you, say something to start our conversation!","tip":"","type":"model"}`,
-              //     },
-              //   ],
-              // },
             ],
       generationConfig: {
         maxOutputTokens: 350,
@@ -49,7 +41,7 @@ export const sendMessage = async ({
     await chatModel.sendMessage(JSON.stringify(message));
 
     return { data: JSON.stringify(chatModel.params?.history), res: 200 };
-  } catch (_error: unknown) {
-    return { data: undefined, res: 400 };
+  } catch (error: unknown) {
+    return { data: JSON.stringify(error), res: 400 };
   }
 };
