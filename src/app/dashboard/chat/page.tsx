@@ -6,8 +6,9 @@ import { MessageType } from '@/common/types/chat';
 import { sendMessage } from '@/server/gemini/chat';
 import { Content } from '@google/generative-ai';
 import { ChevronLeft, Send } from 'lucide-react';
-import Link from 'next/link';
 import { ProfilePicture } from '@/common/components/profile-picture';
+import LiraPfp from '/public/neutral_lira.jpg';
+import Link from 'next/link';
 
 export default function Chat() {
   const [message, setMessage] = useState('');
@@ -40,7 +41,7 @@ export default function Chat() {
         <Link className="h-full flex items-center justify-center" href="/dashboard">
           <ChevronLeft size={24} className="text-primary-dark" />
         </Link>
-        <ProfilePicture src="/pfp.jpg" size={40} alt="Lira Profile Picture" />
+        <ProfilePicture src={LiraPfp} size={40} alt="Lira Profile Picture" />
         <div className="flex flex-col">
           <h1 className="text-primary-dark text-xl font-bold -mb-[3px]">Lira</h1>
           <div className="text-success text-sm font-medium flex gap-1 items-center">
@@ -50,7 +51,7 @@ export default function Chat() {
         </div>
       </div>
       <div className="w-full flex-1 flex gap-2 flex-col h-full overflow-y-scroll scrollbar">
-        {history.slice(1).map((content, index) => {
+        {history.slice(1).map((content) => {
           return content.parts.map((part, index) => {
             if (part.text?.startsWith('{')) {
               const message = JSON.parse(part.text) as MessageType;

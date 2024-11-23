@@ -1,11 +1,11 @@
 import { GoogleLogin } from '@/common/components/google-login';
 import { ProfilePicture } from '@/common/components/profile-picture';
-import LiraPfp from '/public/pfp.jpg';
+import LiraPfp from '/public/neutral_lira.jpg';
 
 export default function Home() {
   return (
     <div className="w-full min-h-screen p-8 py-12 flex flex-col items-center justify-between gap-16">
-      <h1 className="text-3xl font-semibold text-center">Fluency</h1>
+      <h1 className="text-4xl font-bold text-center">Fluency</h1>
       <div className="flex flex-col items-center justify-center gap-4">
         <ProfilePicture src={LiraPfp} size={84} alt="Lira Profile Picture" />
         <h2 className="text-center text-2xl font-semibold ">Aprenda inglês com a Lira</h2>

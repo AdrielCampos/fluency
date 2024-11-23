@@ -4,15 +4,16 @@ import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { NewChat } from './components/new-chat';
 import { UserProfilePicture } from './components/user-profile-picture';
+import LiraPfp from '/public/neutral_lira.jpg';
 
 export default function Dashboard() {
   return (
-    <div className="flex items-center flex-col p-4 gap-6">
+    <div className="flex items-center flex-col p-4 gap-6 justify-between h-screen">
       <section className="flex justify-between w-full p-6">
         <UserProfilePicture />
       </section>
       <section className="flex flex-col w-full items-center gap-4">
-        <WaveCircle percentage={80} />
+        <WaveCircle percentage={30} />
         <div>
           <h3 className="text-center text-xl font-bold">Iniciante</h3>
           <p className="text-center text-base">A1</p>
@@ -24,7 +25,7 @@ export default function Dashboard() {
           className="flex gap-4 w-full justify-between border border-primary bg-secondary p-3 rounded-lg items-center"
         >
           <div className="flex gap-4 items-center">
-            <ProfilePicture src="/pfp.jpg" alt="Adriel" size={40} />
+            <ProfilePicture src={LiraPfp} alt="Lira Profile Picture" size={40} />
             <div className="flex flex-col">
               <h1 className="text-primary-dark text-xl font-bold -mb-[3px]">Lira</h1>
               <div className="text-success text-sm font-medium flex gap-1 items-center">
