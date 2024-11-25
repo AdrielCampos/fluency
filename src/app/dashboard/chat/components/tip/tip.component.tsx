@@ -1,29 +1,22 @@
 'use client';
 import { cn } from '@/common/utils/cn';
+import { X } from 'lucide-react';
 
-export const Popover = ({
-  label,
+export const Tip = ({
   active,
-  yes,
-  no,
+  setActive,
+  tip,
 }: {
-  label: string;
   active: boolean;
-  yes: {
-    onClick: () => void;
-    label: string;
-  };
-  no: {
-    onClick: () => void;
-    label: string;
-  };
+  setActive: React.Dispatch<React.SetStateAction<boolean>>;
+  tip: string;
 }) => {
   return (
     <>
       <div
         data-state={active ? 'open' : 'closed'}
         className={cn('h-screen w-screen fixed bg-secondary opacity-50 hidden top-0 left-0', 'data-[state=open]:block')}
-        onClick={no.onClick}
+        onClick={() => setActive(false)}
       />
       <div
         data-state={active ? 'open' : 'closed'}
@@ -32,15 +25,13 @@ export const Popover = ({
           'data-[state=open]:flex data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fill-mode-forwards',
         )}
       >
-        <p className="text-lg">{label}</p>
-        <div className="flex flex-wrap gap-4 w-full">
-          <button className="flex-1 p-3 border border-primary-dark rounded-lg" onClick={no.onClick}>
-            {no.label}
-          </button>
-          <button className="flex-1 p-3 rounded-lg bg-primary-dark text-secondary-light" onClick={yes.onClick}>
-            {yes.label}
+        <div className="w-full flex justify-between">
+          <h3 className="text-lg font-medium">English Tip</h3>
+          <button onClick={() => setActive(false)} className="h-full aspect-square">
+            <X size={18} />
           </button>
         </div>
+        <p>{tip}</p>
       </div>
     </>
   );

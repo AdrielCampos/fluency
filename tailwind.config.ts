@@ -53,11 +53,25 @@ const config: Config = {
             animationTimingFunction: 'cubic-bezier(0,0,0.2,1)',
           },
         },
+        pulse: {
+          '0%': {
+            opacity: '1',
+            'box-shadow': '0 0 0 0 rgba(255,193,7,1)',
+          },
+          '50%': {
+            opacity: '1',
+            'box-shadow': '0 0 0 8px rgba(255,193,7,0)',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
       },
       animation: {
         wave: 'wave 5s linear infinite',
         waveSlow: 'wave 10s linear infinite',
         bounce: 'bounce 1s infinite',
+        pulse: 'pulse 1s infinite',
       },
     },
   },

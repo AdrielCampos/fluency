@@ -15,7 +15,7 @@ export default function Dashboard() {
   const { user } = useUserProvider();
 
   return user && user !== 'unlogged' ? (
-    <div className="flex items-center flex-col p-4 gap-6 justify-between h-screen">
+    <div className="flex items-center flex-col p-4 gap-6 justify-between min-h-screen">
       <section className="flex justify-between w-full p-6">
         <UserProfilePicture />
       </section>
