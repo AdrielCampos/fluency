@@ -2,10 +2,12 @@
   "name": "Fluency",
   "short_name": "Fluency",
   "description": "Aprenda inglês de forma rápida e eficiente",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#eafdf8",
   "theme_color": "#333333",
+  "background_color": "#eafdf8",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
