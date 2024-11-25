@@ -1,6 +1,6 @@
 import { GoogleLogin } from '@/common/components/google-login';
 import { ProfilePicture } from '@/common/components/profile-picture';
-import LiraPfp from '/public/neutral_lira.jpg';
+import LiraPfp from '/public/happy_lira.jpg';
 
 export default function Home() {
   return (
