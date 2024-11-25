@@ -2,9 +2,10 @@ import type { Metadata, Viewport } from 'next';
 import { Nunito } from 'next/font/google';
 import { cn } from '@/common/utils/cn';
 import { Suspense } from 'react';
-import '../config/styles/globals.css';
 import { UserProvider } from '@/common/providers/user-provider';
 import { Loading } from '@/common/components/loading';
+import { InstallPrompt } from '@/common/components/install-prompt';
+import '../config/styles/globals.css';
 
 const nunito = Nunito({ subsets: ['latin'], variable: '--font-nunito' });
 
@@ -28,7 +29,10 @@ export default function RootLayout({
     <html lang="pt-br" className="flex items-center justify-center">
       <body className={cn(nunito.variable, 'antialiased flex-1 max-w-[480px] min-h-screen')} suppressHydrationWarning>
         <Suspense fallback={<Loading />}>
-          <UserProvider>{children}</UserProvider>
+          <UserProvider>
+            <InstallPrompt />
+            {children}
+          </UserProvider>
         </Suspense>
       </body>
     </html>
