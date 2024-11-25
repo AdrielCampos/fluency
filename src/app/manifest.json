@@ -4,7 +4,7 @@
   "description": "Aprenda inglês de forma rápida e eficiente",
   "theme_color": "#333333",
   "background_color": "#eafdf8",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
