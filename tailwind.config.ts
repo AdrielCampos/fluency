@@ -66,12 +66,25 @@ const config: Config = {
             opacity: '1',
           },
         },
+        speech: {
+          '0%': {
+            height: '60%',
+          },
+          '50%': {
+            height: '100%',
+          },
+          '100%': {
+            height: '60%',
+          },
+        },
       },
       animation: {
         wave: 'wave 5s linear infinite',
         waveSlow: 'wave 10s linear infinite',
         bounce: 'bounce 1s infinite',
         pulse: 'pulse 1s infinite',
+        speech: 'speech 1.5s infinite',
+        speechDelay: 'speech 1.5s infinite 0.5s',
       },
     },
   },

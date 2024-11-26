@@ -4,7 +4,7 @@ import { Form } from '@/common/components/form/form-provider';
 import { Input } from '@/common/components/form/input';
 import { sendMessage } from '@/server/gemini/chat';
 import { Content } from '@google/generative-ai';
-import { ChevronLeft, Lightbulb, Send } from 'lucide-react';
+import { ChevronLeft, Lightbulb, Mic as MicIcon, Send } from 'lucide-react';
 import { ProfilePicture } from '@/common/components/profile-picture';
 import { Messages } from './components/messages';
 import LiraPfp from '/public/happy_lira.jpg';
@@ -16,6 +16,7 @@ import { useUserProvider } from '@/common/providers/user-provider';
 import { Loading } from '@/common/components/loading';
 import { MessageType } from '@/common/types/chat';
 import { Tip } from './components/tip';
+import { Mic } from './components/mic';
 
 export default function Chat() {
   const { user, refresh } = useUserProvider();
@@ -24,11 +25,12 @@ export default function Chat() {
   const [loading, setLoading] = useState(false);
   const [currentTip, setCurrentTip] = useState('');
   const [tipActive, setTipActive] = useState(false);
+  const [micActive, setMicActive] = useState(false);
   const targetRef = useRef<HTMLSpanElement>(null);
 
   const sendClientMessage = async (values: Record<string, unknown>) => {
     try {
-      if (!values.message || typeof values.message !== 'string') {
+      if (!values.message || typeof values.message !== 'string' || values.message.length === 0) {
         throw new Error('Message is required');
       }
       if (!user || user === 'unlogged') {
@@ -143,19 +145,38 @@ export default function Chat() {
           name="message"
           type="text"
           placeholder="Mensagem"
-          validation={['required']}
           className="flex-1"
           onChange={setMessage}
           value={message}
           disabled={loading}
         />
-        <button
-          disabled={loading}
-          type="submit"
-          className="bg-primary-dark text-secondary-light aspect-square w-10 h-10 flex items-center justify-center rounded-full"
-        >
-          <Send size={19} className="-translate-x-[1.5px] translate-y-[1px]" />
-        </button>
+        {message.length > 0 ? (
+          <button
+            disabled={loading}
+            type="submit"
+            className="bg-primary-dark text-secondary-light aspect-square w-10 h-10 flex items-center justify-center rounded-full"
+          >
+            <Send size={19} className="-translate-x-[1.5px] translate-y-[1px]" />
+          </button>
+        ) : (
+          <>
+            <button
+              disabled={loading}
+              type="button"
+              onClick={() => setMicActive(true)}
+              className="bg-primary-dark text-secondary-light aspect-square w-10 h-10 flex items-center justify-center rounded-full"
+            >
+              <MicIcon size={19} />
+            </button>
+            <Mic
+              open={micActive}
+              setOpen={setMicActive}
+              setResponse={(response) => {
+                sendClientMessage({ message: response });
+              }}
+            />
+          </>
+        )}
       </Form>
     </div>
   ) : (
